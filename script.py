@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 
 df = pd.read_csv('data/water_potability.csv')
 
@@ -49,3 +50,12 @@ X_test_scaled = scaler.transform(X_test)
 
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
+
+## Prediction
+
+y_pred = model.predict(X_test_scaled)
+
+## Evaluation
+
+print(classification_report(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
