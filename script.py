@@ -36,3 +36,10 @@ X_train['Trihalomethanes'] = X_train['Trihalomethanes'].fillna(trih_median)
 X_test['ph'] = X_test['ph'].fillna(ph_median)
 X_test['Sulfate'] = X_test['Sulfate'].fillna(sulfate_median)
 X_test['Trihalomethanes'] = X_test['Trihalomethanes'].fillna(trih_median)
+
+## Scaling
+
+scaler = StandardScaler()
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
