@@ -5,8 +5,6 @@ This project applies Machine Learning to predict water potability based on vario
 
 The goal is to demonstrate a rigorous Data Science workflow, focusing on data integrity, leakage prevention, and model interpretability.
 
-
-
 ## Dataset Features
 The model analyzes 9 key parameters to decide the outcome:
 * pH: Acid-base balance.
@@ -18,8 +16,6 @@ The model analyzes 9 key parameters to decide the outcome:
 * Trihalomethanes: Disinfection byproducts.
 * Turbidity: Measurement of light-emitting properties of water.
 * Potability (Target): 1 (Potable) or 0 (Not Potable).
-
-
 
 ## Technical Workflow
 
@@ -38,27 +34,32 @@ We calculated the Median from the Training Set only and applied it to both the t
 ### 3. Feature Scaling
 Since features like Solids (thousands) and pH (units) operate on different scales, we used Standardization (StandardScaler). This transforms the data to have a mean of 0 and a standard deviation of 1, preventing high-magnitude features from dominating the model.
 
-### 4. Machine Learning Model
-We implemented a Random Forest Classifier (100 estimators). This ensemble method uses "Bagging" to train multiple decision trees on different data subsets, taking a majority vote for the final prediction to minimize overfitting.
+### 4. Spot Checking & Model Selection
+To identify the best algorithm, we compared three different approaches:
 
+| Model | Accuracy | False Positives (Danger) | Observation |
+| :--- | :--- | :--- | :--- |
+| **Logistic Regression** | 0.63 | 0 | Failed to learn (classified everything as 0). |
+| **Random Forest** | 0.67 | 54 | Good balance, allows for feature importance analysis. |
+| **SVM** | **0.69** | **37** | **Highest accuracy and safest for health (fewer FP).** |
 
+**Selection:** Although the **SVM** provided the best safety metrics, the **Random Forest** was selected for further evaluation and deployment due to its **interpretability**. In water management, understanding *which* chemical factors influence potability is as crucial as the prediction itself.
 
-## Evaluation Results
+## Final Model Evaluation (Random Forest)
 
-The model achieved an overall Accuracy of 68%. 
+The Random Forest Classifier (100 estimators) provides a conservative but safe prediction profile.
 
 ### Classification Report
 | Class | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- |
 | **0 (Not Potable)** | 0.70 | 0.88 | 0.78 | 412 |
-| **1 (Potable)** | 0.64 | 0.36 | 0.46 | 244 |
+| **1 (Potable)** | 0.64 | 0.36 | 0.46 | 244 | 
 
 ### Confusion Matrix
 ```text
 [[362  50]  <- Correctly predicted 362 "Non-Potable"
  [157  87]]  <- Correctly predicted 87 "Potable"
  ```
-
 
 ## How to Run
 1. Ensure you have the following libraries installed:
