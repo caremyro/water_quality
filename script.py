@@ -51,34 +51,34 @@ X_test_scaled = scaler.transform(X_test)
 
 ## Training
 
-#model = RandomForestClassifier(n_estimators=100, random_state=42)
-#model.fit(X_train_scaled, y_train)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train_scaled, y_train)
 
 ## Prediction
 
-#y_pred = model.predict(X_test_scaled)
+y_pred = model.predict(X_test_scaled)
 
 ## Evaluation
 
-#print(classification_report(y_test, y_pred))
-#print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
 
 ## Spot check   
 
-models = [
-    ('Logistic Regression', LogisticRegression()),
-    ('Random Forest', RandomForestClassifier(random_state=42)),
-    ('SVM', SVC(random_state=42))
-]
+#models = [
+#    ('Logistic Regression', LogisticRegression()),
+#    ('Random Forest', RandomForestClassifier(random_state=42)),
+#    ('SVM', SVC(random_state=42))
+#]
 
-for name, model in models:
+#for name, model in models:
     # Training
-    model.fit(X_train_scaled, y_train)
+#    model.fit(X_train_scaled, y_train)
     
     # Prediction
-    y_pred = model.predict(X_test_scaled)
+#    y_pred = model.predict(X_test_scaled)
     
     # Evaluation
-    print(f"{name} :")
-    print(classification_report(y_test, y_pred))
-    print(confusion_matrix(y_test, y_pred))
+#    print(f"{name} :")
+#    print(classification_report(y_test, y_pred))
+#    print(confusion_matrix(y_test, y_pred))
