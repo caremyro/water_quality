@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/caremyro/water_quality)
+
 # Water Quality & Potability Prediction
 
 ## Project Overview
